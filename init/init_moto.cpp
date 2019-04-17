@@ -53,20 +53,22 @@ void vendor_load_properties()
     property_set("ro.hw.radio", radio.c_str());
 
     //CDMA TESTING
-    if (radio == "US") {
-        std::string carrier = property_get("ro.boot.carrier");
-        std::string fsg = property_get("ro.boot.fsg-id"); //This seems to be useless unless specifically set in the oem
-        cdma_properties();
-        if (carrier == "sprint") {
-            if (fsg == "boost") {
-	            property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
-	            property_set("ro.cdma.home.operator.numeric", "311870");
+    if (device == "owens" || device == "perry") {
+        if (radio == "US") {
+            std::string carrier = property_get("ro.boot.carrier");
+            std::string fsg = property_get("ro.boot.fsg-id"); //This seems to be useless unless specifically set in the oem
+            cdma_properties();
+            if (carrier == "sprint") {
+                if (fsg == "boost") {
+	                property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
+	                property_set("ro.cdma.home.operator.numeric", "311870");
+                }
             }
+            property_set("persist.radio.0x9e_not_callname","1");
+            property_set("ro.carrier", "retus");
+            property_set("ro.mot.build.oem.product", device.c_str());
+            property_set("ro.mot.build.customerid", "retail");
         }
-        property_set("persist.radio.0x9e_not_callname","1");
-        property_set("ro.carrier", "retus");
-        property_set("ro.mot.build.oem.product", "owens");
-        property_set("ro.mot.build.customerid", "retail");
     }
 }
 
@@ -75,11 +77,8 @@ void cdma_properties()
     property_set("DEVICE_PROVISIONED","1");
     property_set("gsm.sim.operator.iso-country", "US");
     property_set("gsm.operator.iso-country", "US");
-    property_set("ril.lte.bc.config", "50403547");
     property_set("ril.subscription.types","NV,RUIM");
-    //property_set("ro.telephony.default_cdma_sub", "0");
     property_set("ro.product.locale.region", "US");
-    //property_set("ro.telephony.default_network", "8");
     property_set("telephony.lteOnCdmaDevice", "1");
 }
 

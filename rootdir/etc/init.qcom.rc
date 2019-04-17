@@ -483,6 +483,9 @@ on post-fs-data
     mkdir /data/misc/fm 0770 system system
     chmod 0770 /data/misc/fm
 
+    # Create directory for fm_radio
+    mkdir /data/misc/fm_radio 0770 system system
+
     #Create PERFD deamon related dirs
     mkdir /data/vendor/perfd 0770 root system
     chmod 2770 /data/vendor/perfd
@@ -639,7 +642,7 @@ service netmgrd /system/vendor/bin/netmgrd
 service qti /system/vendor/bin/qti
     class main
     user radio
-    group radio oem_2901 diag usb
+    group radio oem_2901 diag usb net_raw net_admin
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -668,6 +671,11 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+    
+service atfwd /system/bin/ATFWD-daemon
+    class late_start
+    user system
+    group system radio
 
 service loc_launcher /system/vendor/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
@@ -786,3 +794,19 @@ on property:sys.boot_completed=1
     #WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wdsp0/boot
     chown media audio /sys/kernel/wcd_cpe0/fw_name
+
+    service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
+    class main
+    user radio system
+    group radio system inet
+    disabled
+    oneshot
+    
+    on property:persist.radio.atfwd.start=false
+         stop atfwd
+
+    on property:hw.fm.init=1
+         write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
+
+    on property:hw.fm.init=0
+         write /sys/module/radio_iris_transport/parameters/fmsmd_set 0

@@ -34,9 +34,6 @@
 #include "log.h"
 #include "util.h"
 
-void gsm_properties(bool msim);
-void cdma_properties();
-
 void vendor_load_properties()
 {
     std::string platform = property_get("ro.board.platform");
@@ -52,15 +49,19 @@ void vendor_load_properties()
     property_set("ro.hw.device", device.c_str());
     property_set("ro.hw.radio", radio.c_str());
 
-    //CDMA
-    if (radio == "US") {
-        cdma_properties();
+    if (device == "owens") {
+        if (radio == "US") {
+            std::string carrier = property_get("ro.boot.carrier");
+            if (carrier == "sprint") {
+                property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
+                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
+                property_set("ro.mot.build.oem.product", "owens_sprint");
+                property_set("ro.mot.build.customerid ","sprint");
+            } else {
+                property_set("ro.carrier", "retus");
+                property_set("ro.mot.build.oem.product", "owens");
+                property_set("ro.mot.build.customerid", "retail");
+            }
+        }
     }
-}
-
-void cdma_properties()
-{
-    property_set("DEVICE_PROVISIONED","1");
-    property_set("ril.subscription.types","NV,RUIM");
-    property_set("telephony.lteOnCdmaDevice", "1");
 }

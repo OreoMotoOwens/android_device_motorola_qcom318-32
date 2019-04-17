@@ -36,47 +36,66 @@
 
 void vendor_load_properties()
 {
-    std::string platform = android::base::GetProperty("ro.board.platform", "");
+    std::string platform = property_get("ro.board.platform");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", "");
+    std::string sku = property_get("ro.boot.hardware.sku");
     property_set("ro.product.model", sku.c_str());
 
     // rmt_storage
-    std::string device = android::base::GetProperty("ro.boot.device", "");
-    std::string radio = android::base::GetProperty("ro.boot.radio", "");
+    std::string device = property_get("ro.boot.device");
+    std::string radio = property_get("ro.boot.radio");
     property_set("ro.hw.device", device.c_str());
     property_set("ro.hw.radio", radio.c_str());
 
-    if (device == "owens") {
-        if (radio == "US") {
-            std::string carrier = property_get("ro.boot.carrier");
-            if (carrier == "sprint") {
-                property_set("ro.build.description","owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
-                property_set("ro.build.fingerprint","motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
-                property_set("ro.mot.build.oem.product","owens_sprint");
-                property_set("ro.mot.build.customerid ","sprint");
-                property_set("persist.rcs.supported","1");
-                property_set("persist.vt.supported","1");
-                property_set("persist.eab.supported","1");
-                property_set("persist.radio.videopause.mode","1");
-                property_set("net.tethering.noprovisioning", "true");
-                property_set("tether_dun_required", "0");
-            } else {
-                property_set("ro.carrier", "retus");
-                property_set("ro.mot.build.oem.product","owens");
-                property_set("ro.mot.build.customerid","retail");
-                property_set("persist.ims.volte","true");
-                property_set("persist.ims.vt","false");
-                property_set("persist.ims.vt.epdg","false");
-                property_set("persist.ims.rcs","false");
-                property_set("persist.radio.videopause.mode","0");
-                property_set("persist.vt.supported","0");
-                property_set("persist.eab.supported","0");
-                property_set("persist.rcs.supported","0");
-            }
-            property_set("ro.radio.imei.sv", "2");
+    //CDMA TESTING
+    std::string carrier = property_get("ro.boot.carrier");
+    std::string fsg = property_get("ro.boot.fsg-id");
+    cdma_properties();
+    if (carrier == "sprint") {
+        if (fsg == "boost") {
+	        property_set("ro.cdma.home.operator.numeric", "311870");
+	        property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
         }
+        property_set("ro.fsg-id", "sprint");
+        property_set("ro.carrier", "sprint");
+        property_set("ro.mot.build.customerid ","sprint");
+    } else {
+        property_set("ro.telephony.get_imsi_from_sim", "true");
+        property_set("ro.com.google.clientidbase.am", "android-verizon");
+        property_set("ro.com.google.clientidbase.ms", "android-verizon");
+        property_set("ro.com.google.clientidbase.yt", "android-verizon");
+        property_set("ro.cdma.data_retry_config", "max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000");
+        property_set("ro.mot.build.customerid", "retus");
+    }
+    property_set("persist.radio.multisim.config", "");
+    property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
+    property_set("ro.com.android.dataroaming","false");
+}
+
+void cdma_properties()
+{
+    property_set("DEVICE_PROVISIONED","1");
+    property_set("gsm.sim.operator.iso-country", "US");
+    property_set("gsm.operator.iso-country", "US");
+    property_set("ril.subscription.types","NV,RUIM");
+    property_set("ro.telephony.default_cdma_sub", "0");
+    property_set("ro.product.locale.region", "US");
+    property_set("ro.telephony.default_network", "8");
+    property_set("telephony.lteOnCdmaDevice", "1");
+}
+
+void gsm_properties(bool msim)
+{
+    property_set("telephony.lteOnGsmDevice", "1");
+    property_set("ro.telephony.default_network", "9");
+    if (msim) {
+        property_set("persist.radio.dont_use_dsd", "true");
+        property_set("persist.radio.multisim.config", "dsds");
+        property_set("persist.radio.plmn_name_cmp", "1");
+        property_set("ro.telephony.ril.config", "simactivation");
+    } else {
+        property_set("persist.radio.multisim.config", "");
     }
 }

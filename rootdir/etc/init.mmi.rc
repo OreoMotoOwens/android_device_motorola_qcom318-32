@@ -67,7 +67,7 @@ on post-fs
     mkdir /persist/public/atvc 0770 oem_5012 shell
     mkdir /persist/public/battd 0755 oem_5000 oem_5004
     mkdir /persist/public/att_dm 0775 radio oem_5004
-    mkdir /persist/public/hiddenmenu 0775 radio oem_5004
+    mkdir /persist/public/hiddenmenu 0775 radio mot_tcmd
     mkdir /persist/public/hiddenmenu/data 0775 system oem_5004
     mkdir /persist/public/locale 0700 system system
     mkdir /persist/public/omadm 0700 radio radio
@@ -306,14 +306,6 @@ on moto-charger
     load_system_props
     trigger firmware_mounts_complete
     start thermal-com
-
-on property:ro.boot.dualsim=true
-   setprop persist.radio.multisim.config dsds
-   setprop ro.telephony.default_network 10,10
-
-on property:ro.boot.dualsim=false
-   setprop persist.radio.multisim.config ""
-   setprop ro.telephony.default_network 10
 
 service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core

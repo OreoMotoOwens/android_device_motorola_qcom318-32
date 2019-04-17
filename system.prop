@@ -99,18 +99,6 @@ persist.radio.RATE_ADAPT_ENABLE=1
 persist.radio.VT_ENABLE=1
 persist.radio.VT_HYBRID_ENABLE=1
 persist.radio.VT_USE_MDM_TIME=0
-persist.ims.disableADBLogs=2
-persist.ims.disableDebugLogs=0
-persist.ims.disableIMSLogs=0
-persist.ims.disableQXDMLogs=0
-persist.ims.rcs=false
-persist.ims.volte=true
-persist.ims.vt=false
-persist.ims.vt.epdg=false
-persist.mm.sta.enable=0
-persist.vt.supported=0
-persist.volte_enabled_by_hw=1
-persist.dbg.volte_avail_ovr=1
 
 # Media
 media.aac_51_output_enabled=true
@@ -138,22 +126,10 @@ persist.radio.oem_ind_to_both=0
 persist.radio.relay_oprt_change=1
 rild.libargs=-d /dev/smd0
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
-ro.mot.ignore_csim_appid=true
-persist.mot.gps.conf.from.sim=true
-persist.net.doxlat=true
-persist.radio.REVERSE_QMI=0
-persist.radio.ROTATION_ENABLE=1
-persist.radio.adb_log_on=0
-persist.radio.calls.on.ims=true
-persist.radio.domain.ps=0
-persist.radio.sar_sensor=1
-persist.rmnet.mux=enabled
 
 ro.use_data_netmgrd=true
-persist.data.qmi.adb_logmask=0
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
-persist.data.iwlan.enable=true
 
 # RmNet Data
 persist.rmnet.data.enable=true

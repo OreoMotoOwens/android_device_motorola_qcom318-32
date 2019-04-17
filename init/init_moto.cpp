@@ -87,7 +87,9 @@ void cdma_properties()
     property_set("gsm.sim.operator.iso-country", "US");
     property_set("gsm.operator.iso-country", "US");
     property_set("ril.subscription.types","NV,RUIM");
+    property_set("ro.telephony.default_cdma_sub", "0");
     property_set("ro.product.locale.region", "US");
+    property_set("ro.telephony.default_network", "8");
     property_set("telephony.lteOnCdmaDevice", "1");
 }
 

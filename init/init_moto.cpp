@@ -62,14 +62,11 @@ void vendor_load_properties()
 	            property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
 	            property_set("ro.cdma.home.operator.numeric", "311870");
             }
-            property_set("ro.carrier", "sprint");
-            property_set("ro.mot.build.customerid ","sprint");
-        } else {
-            property_set("ro.telephony.get_imsi_from_sim", "true");
-            property_set("ro.cdma.data_retry_config", "max_retries=infinite,0,0,10000,10000,100000,10000,10000,10000,10000,140000,540000,960000");
-            property_set("ro.mot.build.customerid", "retus");
         }
-        property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
+        property_set("persist.radio.0x9e_not_callname","1");
+        property_set("ro.carrier", "retus");
+        property_set("ro.mot.build.oem.product", "owens");
+        property_set("ro.mot.build.customerid", "retail");
     }
 }
 
@@ -78,10 +75,11 @@ void cdma_properties()
     property_set("DEVICE_PROVISIONED","1");
     property_set("gsm.sim.operator.iso-country", "US");
     property_set("gsm.operator.iso-country", "US");
+    property_set("ril.lte.bc.config", "50403547");
     property_set("ril.subscription.types","NV,RUIM");
-    property_set("ro.telephony.default_cdma_sub", "0");
+    //property_set("ro.telephony.default_cdma_sub", "0");
     property_set("ro.product.locale.region", "US");
-    property_set("ro.telephony.default_network", "8");
+    //property_set("ro.telephony.default_network", "8");
     property_set("telephony.lteOnCdmaDevice", "1");
 }
 

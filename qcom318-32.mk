@@ -23,6 +23,7 @@ PRODUCT_ENFORCE_RRO_TARGETS := framework-res
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(TARGET_COPY_OUT_VENDOR)system/etc/permissions/com.dsi.ant.antradio_library.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -65,6 +66,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=384m
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+
+# ANT+
+PRODUCT_PACKAGES += \
+    AntHalService \
+    com.dsi.ant.antradio_library \
+    libantradio
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -238,6 +245,7 @@ PRODUCT_PACKAGES += \
     init.mmi.usb.rc \
     init.qcom.rc \
     init.qcom.ril.sh \
+    rcs_config.sh \
     ueventd.rc \
     wlan_carrier_bin.sh
 
@@ -279,6 +287,22 @@ PRODUCT_PACKAGES += \
 # Vibrator HAL
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-service.addison
+    
+# Substratum
+PRODUCT_PACKAGES += \
+    ThemeInterfacer
+
+# Telephony
+PRODUCT_PACKAGES += \
+    rcscommon \
+    rcs_service_aidl \
+    rcs_service_api
+
+PRODUCT_PACKAGES += \
+    rcscommon.xml \
+    rcs_service_aidl.xml \
+    rcs_service_api.xml
+
 
 # Wifi
 PRODUCT_PACKAGES += \

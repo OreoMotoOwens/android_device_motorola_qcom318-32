@@ -73,7 +73,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-impl \
     audiod \
     audio.a2dp.default \
-    audio.primary.msm8953 \
+    audio.primary.$(TARGET_BOARD_PLATFORM) \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -126,9 +126,9 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
     android.hardware.renderscript@1.0-impl \
-    gralloc.msm8953 \
-    hwcomposer.msm8953 \
-    memtrack.msm8953
+    gralloc.$(TARGET_BOARD_PLATFORM) \
+    hwcomposer.$(TARGET_BOARD_PLATFORM) \
+    memtrack.$(TARGET_BOARD_PLATFORM)
 
 # Display Calibration
 PRODUCT_COPY_FILES += \
@@ -182,7 +182,7 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
-    lights.msm8953
+    lights.$(TARGET_BOARD_PLATFORM)
 
 # LineageActions
 PRODUCT_PACKAGES += \
@@ -320,6 +320,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
-$(call inherit-product-if-exists, vendor/motorola/msm8937-common/msm8937-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/motorola/qcom318-32/qcom318-32-common-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)

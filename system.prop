@@ -1,5 +1,5 @@
 #
-# system.prop for msm8937-common
+# system.prop for qcom318-32
 #
 
 ro.build.version.qcom=LA.UM.6.6.r1-04400-89xx.0

@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
--include vendor/motorola/msm8937-common/BoardConfigVendor.mk
+-include vendor/motorola/qcom318-32/BoardConfigVendor.mk
 
-VENDOR_PATH := device/motorola/msm8937-common
+VENDOR_PATH := device/motorola/qcom318-32
 
 BOARD_VENDOR := motorola-qcom
 
@@ -28,12 +28,7 @@ TARGET_FS_CONFIG_GEN := \
     $(VENDOR_PATH)/fs_config/qcom_aids.txt \
     $(VENDOR_PATH)/fs_config/file_caps.txt
 
-# Platform
-TARGET_BOARD_PLATFORM := msm8953
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno506
-
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8953
 TARGET_NO_BOOTLOADER := true
 
 # Architecture

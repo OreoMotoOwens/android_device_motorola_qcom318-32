@@ -306,6 +306,14 @@ on moto-charger
     load_system_props
     trigger firmware_mounts_complete
     start thermal-com
+    
+on property:ro.boot.dualsim=true
+    setprop persist.radio.multisim.config dsds
+    setprop ro.telephony.default_network 10,10
+	
+on property:ro.boot.dualsim=false
+    setprop persist.radio.multisim.config ""
+    setprop ro.telephony.default_network 10
 
 service mmi-boot-sh /vendor/bin/init.mmi.boot.sh
     class core

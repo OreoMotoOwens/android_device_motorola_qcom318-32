@@ -63,8 +63,8 @@ void vendor_load_properties()
 	                property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
 	                property_set("ro.cdma.home.operator.numeric", "311870");
                 }
-                property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-26 28 release-keys");
-                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-26/28:user/release-keys");
+                property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
+                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
                 property_set("ro.fsg-id", "sprint");
                 property_set("ro.carrier", "sprint");
                 property_set("ro.mot.build.oem.product", "owens_sprint");
@@ -87,9 +87,7 @@ void cdma_properties()
     property_set("gsm.sim.operator.iso-country", "US");
     property_set("gsm.operator.iso-country", "US");
     property_set("ril.subscription.types","NV,RUIM");
-    property_set("ro.telephony.default_cdma_sub", "0");
     property_set("ro.product.locale.region", "US");
-    property_set("ro.telephony.default_network", "8");
     property_set("telephony.lteOnCdmaDevice", "1");
 }
 

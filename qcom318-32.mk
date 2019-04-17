@@ -178,8 +178,8 @@ PRODUCT_PACKAGES += \
     lights.$(TARGET_BOARD_PLATFORM)
 
 # LineageActions
-PRODUCT_PACKAGES += \
-    LineageActions
+#PRODUCT_PACKAGES += \
+#    LineageActions
 
 # Media
 PRODUCT_PACKAGES += \

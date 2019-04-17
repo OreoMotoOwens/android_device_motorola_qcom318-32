@@ -64,7 +64,7 @@ void vendor_load_properties()
 	                property_set("ro.cdma.home.operator.numeric", "311870");
                 }
                 property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-26 28 release-keys");
-                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-26/28:user/release-keys")
+                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-26/28:user/release-keys");
                 property_set("ro.fsg-id", "sprint");
                 property_set("ro.carrier", "sprint");
                 property_set("ro.mot.build.oem.product", "owens_sprint");

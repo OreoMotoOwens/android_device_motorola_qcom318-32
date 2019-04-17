@@ -292,18 +292,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ThemeInterfacer
 
-# Telephony
-PRODUCT_PACKAGES += \
-    rcscommon \
-    rcs_service_aidl \
-    rcs_service_api
-
-PRODUCT_PACKAGES += \
-    rcscommon.xml \
-    rcs_service_aidl.xml \
-    rcs_service_api.xml
-
-
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \

@@ -53,7 +53,7 @@ void vendor_load_properties()
     property_set("ro.hw.radio", radio.c_str());
 
     //CDMA TESTING
-    if (device == "owens" || device == "perry") {
+    if (device == "owens") {
         if (radio == "US") {
             std::string carrier = property_get("ro.boot.carrier");
             std::string fsg = property_get("ro.boot.fsg-id"); //This seems to be useless unless specifically set in the oem
@@ -63,11 +63,20 @@ void vendor_load_properties()
 	                property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
 	                property_set("ro.cdma.home.operator.numeric", "311870");
                 }
+                property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-26 28 release-keys");
+                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-26/28:user/release-keys")
+                property_set("ro.fsg-id", "sprint");
+                property_set("ro.carrier", "sprint");
+                property_set("ro.mot.build.oem.product", "owens_sprint");
+                property_set("ro.mot.build.customerid ","sprint");
+            } else {
+                property_set("persist.radio.0x9e_not_callname","1");
+                property_set("ro.carrier", "retus");
+                property_set("ro.mot.build.oem.product", "owens");
+                property_set("ro.mot.build.customerid", "retail");
             }
-            property_set("persist.radio.0x9e_not_callname","1");
-            property_set("ro.carrier", "retus");
-            property_set("ro.mot.build.oem.product", device.c_str());
-            property_set("ro.mot.build.customerid", "retail");
+            property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
+            property_set("ro.ril.force_eri_from_xml", "true");
         }
     }
 }

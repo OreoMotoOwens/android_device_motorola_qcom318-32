@@ -115,44 +115,12 @@ debug.qc.hardware=true
 persist.timed.enable=true
 
 # Radio
-persist.data.qmi.adb_logmask=0
-persist.radio.apn_delay=5000
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.dfr_mode_set=1
-persist.radio.force_get_pref=1
-persist.radio.msgtunnel.start=true
-persist.radio.no_wait_for_card=1
-persist.radio.oem_ind_to_both=0
-persist.radio.relay_oprt_change=1
 rild.libargs=-d /dev/smd0
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
-ro.mot.ignore_csim_appid=true
-persist.mot.gps.conf.from.sim=true
-persist.net.doxlat=true
-persist.radio.REVERSE_QMI=0
-persist.radio.ROTATION_ENABLE=1
-persist.radio.adb_log_on=0
-persist.radio.calls.on.ims=true
-persist.radio.domain.ps=0
-persist.radio.sar_sensor=1
-persist.rmnet.mux=enabled
 
 ro.use_data_netmgrd=true
-persist.data.qmi.adb_logmask=0
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
-persist.data.iwlan.enable=true
-
-# RmNet Data
-persist.rmnet.data.enable=true
-persist.data.wda.enable=true
-persist.data.df.dl_mode=5
-persist.data.df.ul_mode=5
-persist.data.df.agg.dl_pkt=10
-persist.data.df.agg.dl_size=4096
-persist.data.df.mux_count=8
-persist.data.df.iwlan_mux=9
-persist.data.df.dev_name=rmnet_usb0
 
 # Vendor Extension
 ro.vendor.extension_library=libqti-perfd-client.so

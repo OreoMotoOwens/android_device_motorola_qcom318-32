@@ -60,8 +60,9 @@ void vendor_load_properties()
             cdma_properties();
             if (carrier == "sprint") {
                 if (fsg == "boost") {
-	                property_set("ro.cdma.home.operator.alpha", "Boost Mobile");
+	                property_set("ro.cdma.home.operator.alpha", "Sprint");
 	                property_set("ro.cdma.home.operator.numeric", "311870");
+                    //property_set("ro.ril.force_eri_from_xml", "true");
                 }
                 property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
                 property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
@@ -74,9 +75,6 @@ void vendor_load_properties()
                 property_set("ro.mot.build.oem.product", "owens");
                 property_set("ro.mot.build.customerid", "retail");
             }
-            property_set("persist.radio.0x9e_not_callname","1");
-            property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
-            property_set("ro.ril.force_eri_from_xml", "true");
         }
     }
 }

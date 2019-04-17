@@ -34,6 +34,9 @@
 #include "log.h"
 #include "util.h"
 
+void gsm_properties(bool msim);
+void cdma_properties();
+
 void vendor_load_properties()
 {
     std::string platform = property_get("ro.board.platform");

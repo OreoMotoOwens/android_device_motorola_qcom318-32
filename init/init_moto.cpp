@@ -56,7 +56,7 @@ void vendor_load_properties()
     if (device == "owens") {
         if (radio == "US") {
             std::string carrier = property_get("ro.boot.carrier");
-            std::string fsg = property_get("ro.boot.fsg-id"); //This seems to be useless unless specifically set in the oem
+            std::string fsg = property_get("ro.boot.fsg-id"); //This seems to be blank unless specifically set in the oem
             cdma_properties();
             if (carrier == "sprint") {
                 if (fsg == "boost") {
@@ -70,11 +70,11 @@ void vendor_load_properties()
                 property_set("ro.mot.build.oem.product", "owens_sprint");
                 property_set("ro.mot.build.customerid ","sprint");
             } else {
-                property_set("persist.radio.0x9e_not_callname","1");
                 property_set("ro.carrier", "retus");
                 property_set("ro.mot.build.oem.product", "owens");
                 property_set("ro.mot.build.customerid", "retail");
             }
+            property_set("persist.radio.0x9e_not_callname","1");
             property_set("ro.cdma.international.eri", "2,74,124,125,126,157,158,159,193,194,195,196,197,198,228,229,230,231,232,233,234,235");
             property_set("ro.ril.force_eri_from_xml", "true");
         }

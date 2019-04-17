@@ -53,15 +53,30 @@ void vendor_load_properties()
         if (radio == "US") {
             std::string carrier = property_get("ro.boot.carrier");
             if (carrier == "sprint") {
-                property_set("ro.build.description", "owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
-                property_set("ro.build.fingerprint", "motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
-                property_set("ro.mot.build.oem.product", "owens_sprint");
+                property_set("ro.build.description","owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
+                property_set("ro.build.fingerprint","motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
+                property_set("ro.mot.build.oem.product","owens_sprint");
                 property_set("ro.mot.build.customerid ","sprint");
+                property_set("persist.rcs.supported","1");
+                property_set("persist.vt.supported","1");
+                property_set("persist.eab.supported","1");
+                property_set("persist.radio.videopause.mode","1");
+                property_set("net.tethering.noprovisioning", "true");
+                property_set("tether_dun_required", "0");
             } else {
                 property_set("ro.carrier", "retus");
-                property_set("ro.mot.build.oem.product", "owens");
-                property_set("ro.mot.build.customerid", "retail");
+                property_set("ro.mot.build.oem.product","owens");
+                property_set("ro.mot.build.customerid","retail");
+                property_set("persist.ims.volte","true");
+                property_set("persist.ims.vt","false");
+                property_set("persist.ims.vt.epdg","false");
+                property_set("persist.ims.rcs","false");
+                property_set("persist.radio.videopause.mode","0");
+                property_set("persist.vt.supported","0");
+                property_set("persist.eab.supported","0");
+                property_set("persist.rcs.supported","0");
             }
+            property_set("ro.radio.imei.sv", "2");
         }
     }
 }

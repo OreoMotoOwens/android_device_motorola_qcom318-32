@@ -390,3 +390,5 @@
 # Trustonic TEE device
 /dev/mobicore             0600   system     system
 /dev/mobicore-user        0666   system     system
+
+#

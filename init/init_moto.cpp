@@ -36,18 +36,18 @@
 
 void vendor_load_properties()
 {
-    std::string platform = android::base::GetProperty("ro.board.platform", ""));
+    std::string platform = android::base::GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", ""));
+    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", "");
     android::init::property_set("ro.product.model", sku.c_str());
 
     // rmt_storage
-    std::string device = android::base::GetProperty("ro.boot.device", ""));
-    std::string radio = android::base::GetProperty("ro.boot.radio", ""));
-    android::init::property_set("ro.hw.device", device.c_str());
-    android::init::property_set("ro.hw.radio", radio.c_str());
+    std::string device = android::base::GetProperty("ro.boot.device", "");
+    std::string radio = android::base::GetProperty("ro.boot.radio", "");
+    android::init::property_set("ro.hw.device", device.c_str();
+    android::init::property_set("ro.hw.radio", radio.c_str();
 
     if (device == "owens") {
         if (radio == "US") {

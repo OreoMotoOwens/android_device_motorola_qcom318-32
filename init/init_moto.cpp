@@ -36,22 +36,22 @@
 
 void vendor_load_properties()
 {
-    std::string platform = property_get("ro.board.platform");
+    std::string platform = android::base::GetProperty("ro.board.platform", ""));
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string sku = property_get("ro.boot.hardware.sku");
+    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", ""));
     property_set("ro.product.model", sku.c_str());
 
     // rmt_storage
-    std::string device = property_get("ro.boot.device");
-    std::string radio = property_get("ro.boot.radio");
+    std::string device = android::base::GetProperty("ro.boot.device", ""));
+    std::string radio = android::base::GetProperty("ro.boot.radio", ""));
     property_set("ro.hw.device", device.c_str());
     property_set("ro.hw.radio", radio.c_str());
 
     if (device == "owens") {
         if (radio == "US") {
-            std::string carrier = property_get("ro.boot.carrier");
+            std::string carrier = android::base::GetProperty("ro.boot.carrier");
             if (carrier == "sprint") {
                 property_set("ro.build.description","owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
                 property_set("ro.build.fingerprint","motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");

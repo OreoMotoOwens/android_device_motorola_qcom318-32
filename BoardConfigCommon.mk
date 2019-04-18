@@ -23,10 +23,10 @@ BOARD_VENDOR := motorola-qcom
 TARGET_SPECIFIC_HEADER_PATH := $(VENDOR_PATH)/include
 
 # AIDs and CAPS
-TARGET_FS_CONFIG_GEN := \
-    $(VENDOR_PATH)/fs_config/mot_aids.txt \
-    $(VENDOR_PATH)/fs_config/qcom_aids.txt \
-    $(VENDOR_PATH)/fs_config/file_caps.txt
+#TARGET_FS_CONFIG_GEN := \
+#    $(VENDOR_PATH)/fs_config/mot_aids.txt \
+#    $(VENDOR_PATH)/fs_config/qcom_aids.txt \
+#    $(VENDOR_PATH)/fs_config/file_caps.txt
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
@@ -105,7 +105,7 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
 # Filesystem
-#TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(VENDOR_PATH)/android_filesystem_config.h
+TARGET_ANDROID_FILESYSTEM_CONFIG_H := $(VENDOR_PATH)/android_filesystem_config.h
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_moto

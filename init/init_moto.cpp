@@ -29,23 +29,35 @@
 
 #include <stdlib.h>
 
-#include "vendor_init.h"
+#include <android-base/properties.h>
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
+#include "vendor_init.h"
+
+namespace android {
+namespace init {
 
 void vendor_load_properties()
+
+	std::string device;
+	std::string radio;
+	std::string platform;
+	std::string sku;
+    
 {
-    std::string platform = android::base::GetProperty("ro.board.platform", "");
+    platform = android::base::GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", "");
+    sku = android::base::GetProperty("ro.boot.hardware.sku", "");
     android::init::property_set("ro.product.model", sku.c_str());
 
     // rmt_storage
-    std::string device = android::base::GetProperty("ro.boot.device", "");
-    std::string radio = android::base::GetProperty("ro.boot.radio", "");
+    
+      
+    device = android::base::GetProperty("ro.boot.device", "");
+    radio = android::base::GetProperty("ro.boot.radio", "");
     android::init::property_set("ro.hw.device", device.c_str();
     android::init::property_set("ro.hw.radio", radio.c_str();
 
@@ -79,4 +91,7 @@ void vendor_load_properties()
             android::init::property_set("ro.radio.imei.sv", "2");
         }
     }
+}
+
+}
 }

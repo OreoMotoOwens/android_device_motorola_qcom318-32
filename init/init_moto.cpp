@@ -66,7 +66,7 @@ void vendor_load_properties()
     std::string radio = GetProperty("ro.boot.radio", "");
     std::string platform = GetProperty("ro.board.platform", "");
     std::string sku = GetProperty("ro.boot.hardware.sku", "");
-    std::string carrier = GetProperty("ro.boot.carrier");
+    std::string carrier = GetProperty("ro.boot.carrier", "");
 
     if (platform != ANDROID_TARGET)
         return;

@@ -27,71 +27,81 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <fstream>
+#include <unistd.h>
 #include <stdlib.h>
 
 #include <android-base/properties.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
+
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
 #include "vendor_init.h"
 
-namespace android {
-namespace init {
+using android::init::property_set;
+using android::base::GetProperty;
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+     pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+ void property_override_dual(char const system_prop[],
+        char const vendor_prop[], char const value[])
+{
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
+}
 
 void vendor_load_properties()
-
-	std::string device;
-	std::string radio;
-	std::string platform;
-	std::string sku;
-    
 {
-    platform = android::base::GetProperty("ro.board.platform", "");
+
+    std::string device = GetProperty("ro.boot.device", "");
+    std::string radio = GetProperty("ro.boot.radio", "");
+    std::string platform = GetProperty("ro.board.platform", "");
+    std::string sku = GetProperty("ro.boot.hardware.sku", "");
+    std::string carrier = GetProperty("ro.boot.carrier");
+
     if (platform != ANDROID_TARGET)
         return;
 
-    sku = android::base::GetProperty("ro.boot.hardware.sku", "");
-    android::init::property_set("ro.product.model", sku.c_str());
-
-    // rmt_storage
-    
-      
-    device = android::base::GetProperty("ro.boot.device", "");
-    radio = android::base::GetProperty("ro.boot.radio", "");
-    android::init::property_set("ro.hw.device", device.c_str();
-    android::init::property_set("ro.hw.radio", radio.c_str();
+    property_override("ro.product.model", sku.c_str());
+    property_set("ro.hw.device", device.c_str();
+    property_set("ro.hw.radio", radio.c_str();
 
     if (device == "owens") {
         if (radio == "US") {
-            std::string carrier = android::base::GetProperty("ro.boot.carrier");
             if (carrier == "sprint") {
-                android::init::property_set("ro.build.description","owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
-                android::init::property_set("ro.build.fingerprint","motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
-                android::init::property_set("ro.mot.build.oem.product","owens_sprint");
-                android::init::property_set("ro.mot.build.customerid ","sprint");
-                android::init::property_set("persist.rcs.supported","1");
-                android::init::property_set("persist.vt.supported","1");
-                android::init::property_set("persist.eab.supported","1");
-                android::init::property_set("persist.radio.videopause.mode","1");
-                android::init::property_set("net.tethering.noprovisioning", "true");
-                android::init::property_set("tether_dun_required", "0");
+                property_set("ro.build.description","owens_sprint-user 7.1.1 NCR26.58-44 28 release-keys");
+                property_set("ro.build.fingerprint","motorola/owens_sprint/owens:7.1.1/NCR26.58-44/28:user/release-keys");
+                property_set("ro.mot.build.oem.product","owens_sprint");
+                property_set("ro.mot.build.customerid ","sprint");
+                property_set("persist.rcs.supported","1");
+                property_set("persist.vt.supported","1");
+                property_set("persist.eab.supported","1");
+                property_set("persist.radio.videopause.mode","1");
+                property_set("net.tethering.noprovisioning", "true");
+                property_set("tether_dun_required", "0");
             } else {
-                android::init::property_set("ro.carrier", "retus");
-                android::init::property_set("ro.mot.build.oem.product","owens");
-                android::init::property_set("ro.mot.build.customerid","retail");
-                android::init::property_set("persist.ims.volte","true");
-                android::init::property_set("persist.ims.vt","false");
-                android::init::property_set("persist.ims.vt.epdg","false");
-                android::init::property_set("persist.ims.rcs","false");
-                android::init::property_set("persist.radio.videopause.mode","0");
-                android::init::property_set("persist.vt.supported","0");
-                android::init::property_set("persist.eab.supported","0");
-                android::init::property_set("persist.rcs.supported","0");
+                property_set("ro.carrier", "retus");
+                property_set("ro.mot.build.oem.product","owens");
+                property_set("ro.mot.build.customerid","retail");
+                property_set("persist.ims.volte","true");
+                property_set("persist.ims.vt","false");
+                property_set("persist.ims.vt.epdg","false");
+                property_set("persist.ims.rcs","false");
+                property_set("persist.radio.videopause.mode","0");
+                property_set("persist.vt.supported","0");
+                property_set("persist.eab.supported","0");
+                property_set("persist.rcs.supported","0");
             }
-            android::init::property_set("ro.radio.imei.sv", "2");
-        }
-    }
-}
-
-}
+            property_set("ro.radio.imei.sv", "2");
+		}
+	}
 }

@@ -44,6 +44,7 @@ TARGET_USES_64_BIT_BINDER := true
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x237
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 vmalloc=350M
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_LZ4C_DT := true
@@ -146,8 +147,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
+#include device/qcom/sepolicy/sepolicy.mk
+#BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 
 # VoLTE
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true

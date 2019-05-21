@@ -243,17 +243,20 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    init.mmi.touch.sh \
+    wlan_carrier_bin.sh \
+    init.qcom.bt.sh \
+    init.qcom.ril.sh
+
+PRODUCT_PACKAGES += \
     fstab.qcom \
     init.mmi.boot.sh \
     init.mmi.laser.sh \
-    init.mmi.touch.sh \
     init.mmi.rc \
     init.mmi.usb.rc \
     init.qcom.rc \
-    init.qcom.ril.sh \
-    ueventd.rc \
-    wlan_carrier_bin.sh
-
+    ueventd.qcom.rc
+    
 # RIL
 PRODUCT_PACKAGES += \
     libqsap_shim \

@@ -243,7 +243,6 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.mmi.touch.sh \
     wlan_carrier_bin.sh \
     init.qcom.bt.sh \
     init.qcom.ril.sh
